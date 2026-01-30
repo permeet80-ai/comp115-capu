@@ -2,7 +2,7 @@
 Lab 4 - Code Refactoring
 (100 marks in total)
 
-Name:
+Name:Parmeet Kaur
 Due Data: Jan. 30, 2023, 17:00pm
 
 Objective:
@@ -41,35 +41,14 @@ draw_circles should have one additional parameters to accommodate
 these varying values, and it should have about 4 lines of code.
 """
 
-
-def draw_circles4(t, size):
-    for _ in range(4):
-        t.circle(size)
-        size = size - 4
-
-
-def draw_circles5(t, size):
-    for _ in range(4):
-        t.circle(size)
-        size = size - 5
+def draw_special(t, size, repeat, decrease):
+    for _ in range(repeat):
+        draw_circles(t, size, decrease)
+        t.right(360 / repeat)
 
 
-def draw_circles10(t, size):
-    for _ in range(4):
-        t.circle(size)
-        size = size - 10
 
 
-def draw_circles19(t, size):
-    for _ in range(4):
-        t.circle(size)
-        size = size - 19
-
-
-def draw_circles20(t, size):
-    for _ in range(4):
-        t.circle(size)
-        size = size - 20
 
 
 """
@@ -81,36 +60,13 @@ you developed in exercise 1.
 
 The function draw_special you write is short as well (about 4 lines of code).
 """
-
-
-def draw_special4(t, size, repeat):
+def draw_special(t, size, repeat, decrease):
     for _ in range(repeat):
-        draw_circles4(t, size)
+        draw_circles(t, size, decrease)
         t.right(360 / repeat)
 
 
-def draw_special5(t, size, repeat):
-    for _ in range(repeat):
-        draw_circles5(t, size)
-        t.right(360 / repeat)
 
-
-def draw_special10(t, size, repeat):
-    for _ in range(repeat):
-        draw_circles10(t, size)
-        t.right(360 / repeat)
-
-
-def draw_special19(t, size, repeat):
-    for _ in range(repeat):
-        draw_circles19(t, size)
-        t.right(360 / repeat)
-
-
-def draw_special20(t, size, repeat):
-    for _ in range(repeat):
-        draw_circles20(t, size)
-        t.right(360 / repeat)
 
 
 """
@@ -171,15 +127,24 @@ def draw_picture():
     draw_special20(Will, 100, 10)
 
 def draw_picture_nice():
-    pass
+    t = turtle.Turtle()
+    t.speed(0)
+
+    colors = ['white', 'yellow', 'blue', 'orange', 'red']
+    decrease_amounts = [4, 5, 10, 19, 20]
+
+    for i in range(len(colors)):
+        t.color(colors[i])
+        draw_special(t, 100, 10, decrease_amounts[i])
+
 
 
 
 if __name__ == "__main__":
     drawing_screen = turtle.Screen()
     drawing_screen.bgcolor('black')
-    #draw_picture_nice()
-    draw_picture()
+    draw_picture_nice()
+    #draw_picture()
     drawing_screen.mainloop() # Wait for the user to close the drawing screen
 
 
