@@ -53,7 +53,10 @@ Uncomment the unit tests below to verify your function implementation.
 
 
 def convert_american_dollars(american_dollars):
-    pass
+    def convert_american_dollars(american_dollars):
+    canadian_dollars = american_dollars * 1.34
+    return round(canadian_dollars, 2)
+
 
 # assert convert_american_dollars(1) == 1.34
 # assert convert_american_dollars(100) == 134
@@ -86,7 +89,10 @@ days_week = [
     "Thursday", "Friday", "Saturday", "Sunday"
 ]
 def back_day_from_trip(day_today, days_trip):
-    pass
+    def back_day_from_trip(day_today, days_trip):
+    day_back = (day_today + days_trip) % 7
+    return days_week[day_back]
+
 
 # assert back_day_from_trip(3, 5) == "Tuesday"
 # assert back_day_from_trip(1, 2) == "Thursday"
@@ -124,7 +130,13 @@ Uncomment the unit tests below to verify your function implementation.
 
 # Function implementation (10 marks)
 def average(nums):
-    pass
+    def average(nums):
+    total = 0
+    for num in nums:
+        total += num
+    avg = total / len(nums)
+    return round(avg, 2)
+
 
 
 
@@ -151,7 +163,12 @@ Uncomment the unit tests below to verify your function implementation.
 
 # Function implementation
 def sum_of_squares(nums):
-    pass
+    def sum_of_squares(nums):
+    total = 0
+    for num in nums:
+        total += num ** 2
+    return total
+
 
 # assert sum_of_squares([2, 3, 4]) == 29
 # assert sum_of_squares([2, 4]) == 20
@@ -170,7 +187,12 @@ Uncomment the unit tests below to verify your function implementation.
 
 # Function implementation 
 def add_number(nums, k):
-    pass
+    def add_number(nums, k):
+    result = []
+    for num in nums:
+        result.append(num + k)
+    return result
+
 
 # assert add_number([2, 4, 1], 5) == [7, 9, 6]
 # assert add_number([7, 8], -5) == [2, 3]
@@ -196,7 +218,12 @@ Uncomment the unit tests below to verify your function implementation.
 
 # Function implementation
 def squares(nums):
-    pass
+    def squares(nums):
+    result = []
+    for num in nums:
+        result.append(num ** 2)
+    return result
+
 
 
 # assert squares([2, 3, 4]) == [4, 9, 16]
@@ -225,7 +252,13 @@ Uncomment the unit tests below to verify your function implementation.
 
 # Function implementation 
 def repeat_elements(nums):
-    pass
+    def repeat_elements(nums):
+    result = []
+    for num in nums:
+        result.append(num)
+        result.append(num)
+    return result
+
 
 
 # assert repeat_elements([1, 2, 3, 4]) == [1, 1, 2, 2, 3, 3, 4, 4]
