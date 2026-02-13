@@ -2,7 +2,7 @@
 Lab 6 - Selections and Iterations 
 (100 marks in total, including 10 exercises)
 
-Author:  <your name>
+Author:  <Parmeet Kaur>
 Due Date: This Friday (Feb. 13) 5pm.
 
 Objective:
@@ -26,8 +26,12 @@ whether the number k exists in the list nums.
 If k is in nums, return True.
 Otherwise, return False.
 """
+
 def is_in_list(nums, k):
-    pass
+    for num in nums:
+        if num == k:
+            return True
+    return False
 
 # assert is_in_list([4, 5, 6], 5) == True
 # assert is_in_list([], 3) == False
@@ -43,9 +47,12 @@ that returns True if the list contains any negative number,
 otherwise False.
 """
 
-def has_negative(nums):
-    pass
 
+def has_negative(nums):
+    for num in nums:
+        if num < 0:
+            return True
+    return False
 # assert has_negative([1, 2, 3, -4, 5]) == True
 # assert has_negative([0, 2, 3, 4, 5]) == False
 
@@ -59,9 +66,12 @@ otherwise False.
 
 """
 
-def all_even(nums):
-    pass
 
+def all_even(nums):
+    for num in nums:
+        if num % 2 != 0:
+            return False
+    return True
 
 # assert all_even([2, 4, 6, 8]) == True
 # assert all_even([2, 3, 4]) == False
@@ -75,9 +85,18 @@ in a list are even and how many are odd.
 
 Return a list [even_count, odd_count]
 """
-def count_even_odd(nums):
-    pass
 
+def count_even_odd(nums):
+    even = 0
+    odd = 0
+    
+    for n in nums:
+        if n % 2 == 0:
+            even = even + 1
+        else:
+            odd = odd + 1
+    
+    return [even, odd]
 # assert count_even_odd([1, 2, 3, 4, 5, 6]) == [3, 3]
 # assert count_even_odd([2, 4, 6, 8]) == [4, 0]
 # assert count_even_odd([1, 3, 5]) == [0, 3]
@@ -99,9 +118,21 @@ Return a list [hot_count, mild_count, cold_count]
 
 """
 
-def temp_category(temps):
-    pass
 
+def temp_category(temps):
+    hot = 0
+    mild = 0
+    cold = 0
+    
+    for t in temps:
+        if t >= 30:
+            hot = hot + 1
+        elif t >= 15:
+            mild = mild + 1
+        else:
+            cold = cold + 1
+    
+    return [hot, mild, cold]
 # assert temp_category([32, 28, 15, 12, 35]) == [2, 2, 1]
 # assert temp_category([10, 5, 0]) == [0, 0, 3]
 # assert temp_category([20, 25, 30]) == [1, 2, 0]
@@ -122,9 +153,21 @@ otherwise, a number is not a multiple of 2, 3, or 5 → append the letter "O"
 Return a list of the categories.
 """
 
-def mult_category(nums):
-    pass
 
+def mult_category(nums):
+    result = []
+    
+    for n in nums:
+        if n % 2 == 0:
+            result.append(2)
+        elif n % 3 == 0:
+            result.append(3)
+        elif n % 5 == 0:
+            result.append(5)
+        else:
+            result.append("O")
+    
+    return result
 # assert mult_category([2, 3, 5, 7]) == [2, 3, 5, "O"]
 # assert mult_category([4, 9, 10, 11]) == [2, 3, 2, "O"]
 # assert mult_category([15, 7, 30, 11]) == [3, "O", 2, "O"]
@@ -136,9 +179,14 @@ Exercise 7 (10 marks)
 Implement a function to reverse a list.
 
 """
-def reverse_list(nums):
-    pass
 
+def reverse_list(nums):
+    new_list = []
+    
+    for i in range(len(nums)-1, -1, -1):
+        new_list.append(nums[i])
+    
+    return new_list
 # assert reverse_list([1, 3, 4]) == [4, 3, 1]
 # assert reverse_list([3, 9, 6]) == [6, 9, 3]
 
@@ -161,8 +209,16 @@ num not in nums
 is True if num does not exist in the list nums.
 """
 
+
 def remove_duplicates(nums):
-    pass
+    new_list = []
+    
+    for n in nums:
+        if n not in new_list:
+            new_list.append(n)
+    
+    return new_list
+
 
 # assert remove_duplicates([1, 3, 3, 4]) == [1, 3, 4]
 # assert remove_duplicates([1, 1, 3, 4, 3]) == [1, 3, 4]
@@ -182,9 +238,14 @@ n! = n * (n-1) * (n-2) * ... * 1
 You may assume n >= 0.
 
 """
-def my_factorial(n):
-    pass
 
+def my_factorial(n):
+    answer = 1
+    
+    for i in range(1, n+1):
+        answer = answer * i
+    
+    return answer
 # assert my_factorial(0) == 1
 # assert my_factorial(1) == 1
 # assert my_factorial(3) == 6
@@ -205,7 +266,18 @@ If n = 4, return [0, 1, 1, 2]
 """
 def my_fib(n):
     pass
-
+def my_fib(n):
+    if n == 1:
+        return [0]
+    if n == 2:
+        return [0, 1]
+    
+    fib = [0, 1]
+    
+    for i in range(2, n):
+        next_num = fib[i-1] + fib[i-2]
+        fib.append(next_num)
+       return fib
 # assert my_fib(1) == [0]
 # assert my_fib(2) == [0, 1]
 # assert my_fib(5) == [0, 1, 1, 2, 3]
