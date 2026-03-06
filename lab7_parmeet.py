@@ -2,7 +2,7 @@
 Lab 7 - Strings and Tuples 
 (100 marks in total)
 
-Author:  <your name>
+Author:  <parmeet kaur>
 Due Date: This Friday (Mar. 6) 5 pm.
 Submission: Upload your lab python file to your GitHub repository.
 
@@ -33,25 +33,23 @@ reverse_str("COMP115") should return "511PMOC".
 
 Hint: the accumulator algorithm and the string concatenation using the operator '+'
 """
-def reverse_str(s):
+    def reverse_str(s):
     """
-    This function reverses string s.
-
-    E.g., 
-    >>> reverse_str('app')
-    'ppa'
+    Reverse the given string.
 
     Parameters:
-    - s (string): The string to be reversed
+    s (str): the string to reverse
 
     Returns:
-    - (string): A reversed version of string s.
-
+    str: reversed string
     """
-    pass
-    
 
-# Your unit tests
+    new_string = ""
+
+    for ch in s:
+        new_string = ch + new_string
+
+    return new_string
 
 
 
@@ -66,25 +64,26 @@ count_vowels("Hmmm") should return 0, since there are no vowels.
 
 Hint: you may want to convert the input string to its lowercase version using s.lower() first.
 """
-def count_vowels(s):
+  def count_vowels(s):
     """
     This function counts the number of vowels in the string s.
-
-    E.g., 
-    >>> count_vowels("Apple")
-    2
 
     Parameters:
     - s (string): The string in which vowels are counted.
 
     Returns:
     - (int): The total number of vowels in the string s.
-
     """
-    pass
-    
 
-# Your unit tests
+    s = s.lower()
+    count = 0
+
+    for ch in s:
+        if ch == 'a' or ch == 'e' or ch == 'i' or ch == 'o' or ch == 'u':
+            count = count + 1
+
+    return count
+
 
 
 
@@ -100,14 +99,28 @@ remove_duplicates("pear") == "pear"
 
 Hint: in
 """
+
+    
 def remove_duplicates(s):
     """
-    Write your docstring
+    Remove duplicate characters from a string.
+
+    Parameters:
+    s (str): the input string
+
+    Returns:
+    str: a new string with duplicate characters removed
     """
-    pass
+
+    result = ""
+
+    for ch in s:
+        if ch not in result:
+            result = result + ch
+
+    return result
 
 
-# Your unit tests
 
 
 
@@ -124,14 +137,29 @@ find_index("Abd", 'w') == -1
 
 Note: we should implement our own algorithm, not using the built-in function find().
 """
+
+    
 def find_index(s, t):
     """
-    Write your docstring
+    Find the first index of character t in string s.
+
+    Parameters:
+    s (str): the string to search
+    t (str): the character to find
+
+    Returns:
+    int: the index of t in s, or -1 if not found
     """
-    pass
 
+    index = 0
 
-# Your unit tests
+    for ch in s:
+        if ch == t:
+            return index
+        index = index + 1
+
+    return -1
+
 
 
 """
@@ -157,14 +185,26 @@ days_week = ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
 # since the index operation is the same for tuple and list.
 
 
+
+    """
+    
 def project_completion_day(day, days_to_completion):
     """
-    Write your docstring
+    Find the day when a project will be completed.
+
+    Parameters:
+    day (str): the current day of the week
+    days_to_completion (int): number of days needed to finish the project
+
+    Returns:
+    str: the day when the project will be completed
     """
-    pass
 
-# Your unit tests
+    start_index = days_week.index(day)
 
+    finish_index = (start_index + days_to_completion) % 7
+
+    return days_week[finish_index]
 
 
 """Log Parsing Exercise (20 marks - function implementation 10, unit test 5, function usage 5)
@@ -219,13 +259,24 @@ list = ['Hello, ', 'world!']
 """
 
 def parse_log_line(line):
-    pass
+    """
+    Parse a single log line into (timestamp, level, module, message).
 
+    Parameters:
+    line (str): A log line
 
+    Returns:
+    tuple: (timestamp, level, module, message)
+    """
 
+    parts = line.split()          # split by spaces
 
-# Your unit tests
+    timestamp = parts[0] + " " + parts[1]   # first two items
+    level = parts[2][1:-1]                   # remove brackets [ ]
+    module = parts[3]                        # module.py
+    message = " ".join(parts[4:])            # rest of the line
 
+    return (timestamp, level, module, message)
 
 
 
