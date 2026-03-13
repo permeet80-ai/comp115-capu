@@ -2,7 +2,7 @@
 Lab 8 - Set and Dict 
 (100 marks in total, including 5 exercises - each 20 marks)
 
-Author:  <your name>
+Author:  <parmeet kaur>
 Due Date: This Friday (Mar. 13) 5pm.
 Note: Try best to finish the lab exercises using what we've learnt about algorithms.
       Please do not rely on AI assistant too heavily for labs.
@@ -13,19 +13,6 @@ Objective:
 3. Practice how to operate on set and dict.
 4. Review iterations using loop.
 5. Review the accumulator algorithm pattern (Initialize-Loop-Return):
-   Initialize a variable that is assigned to an integer, a list, a string, a set, a dict, etc.; 
-   Loop (for or while) to update the variable based on requirements; 
-   Return the variable or a value related to this variable.
-"""
-
-"""
-Here is one solution of Lab 7 exercise 3: Remove the duplicate characters in a string.
-E.g.,
-remove_duplicates("apple") == "aple"
-remove_duplicates("Popsipple") == "Popsile" (Notice: 'P' and 'p' are different chars)
-remove_duplicates("pear") == "pear"
-"""
-def remove_duplicates(s):
     """
     This function removes the duplicates from the string s.
 
@@ -53,14 +40,23 @@ Hint: 1. We put the seen chars in the set while adding them to the res string;
       2. To initialize an empty set: seen_set = set()
 """
 def remove_duplicates_set(s):
-    """
-    Write your docstring here.
-    """
-    pass
     
+    This function removes duplicate characters from a string
+    using a set to remember characters that already appeared.
+    """
+    seen_set = set()
+    res = ""
+
+    for c in s:
+        if c not in seen_set:
+            seen_set.add(c)
+            res = res + c
+
+    return res
 
 # Your unit tests
-
+assert remove_duplicates_set("apple") == "aple"
+assert remove_duplicates_set("Popsipple") == "Popsile"
 
 """
 Exercise 2 (20 marks - doctring: 5 marks, function implementation: 10 marks, unit tests: 5 marks)
@@ -80,14 +76,31 @@ gem_counting("bFfL", "cQqW") will return 0
 """
 def gem_counting(stones, gems):
     """
-    Write your docstring
+    This function counts how many stones are actually gems.
+
+    Parameters:
+    stones (str): string representing stones collected
+    gems (str): string representing types of gems
+
+    Returns:
+    int: number of stones that are gems
     """
-    pass
+    
+    gem_set = set(gems)
+    count = 0
+
+    for s in stones:
+        if s in gem_set:
+            count = count + 1
+
+    return count
 
 
 # Your unit tests
-
-
+assert gem_counting("abDFMdm", "admMQq") == 4
+assert gem_counting("abDFMdm", "af") == 1
+assert gem_counting("awCcM", "cQqW") == 1
+assert gem_counting("bFfL", "cQqW") == 0
 
 """
 Exercise 3 (20 marks: doctring: 5 marks, function implementation: 10 marks, unit tests: 5 marks)
@@ -111,12 +124,23 @@ Think about which data type we should use to ease the work of finding distinctiv
 """
 def students_id(ids):
     """
-    Write your docstring here
+    This function returns the number of different student IDs
+    in the list of shuttle bus users.
+
+    Parameters:
+    ids (list): list containing student IDs
+
+    Returns:
+    int: number of unique student IDs
     """
-    pass
-    
+
+    unique_ids = set(ids)
+    return len(unique_ids)
+
 
 # Your unit tests
+assert students_id(['002', '003', '001', '004', '012']) == 5
+assert students_id(['002', '003', '001', '012', '003', '001']) == 4   
 
 
 
@@ -137,14 +161,37 @@ returns {'002': 1, '003': 2, '001': 2, '012': 1}
 
 Hint: To initialize an empty dict: id_dict = {}
 """
+
 def students_id_occurrences(ids):
     """
-    Write your docstring
+    This function counts how many times each student ID appears
+    in the list of shuttle bus users.
+
+    Parameters:
+    ids (list): list containing student IDs
+
+    Returns:
+    dict: dictionary where key is student ID and value is number of occurrences
     """
-    pass
+
+    id_dict = {}
+
+    for i in ids:
+        if i in id_dict:
+            id_dict[i] = id_dict[i] + 1
+        else:
+            id_dict[i] = 1
+
+    return id_dict
 
 
 # Your unit tests
+assert students_id_occurrences(['002', '003', '001', '004', '012']) == {
+'002':1,'003':1,'001':1,'004':1,'012':1}
+
+assert students_id_occurrences(['002','003','001','012','003','001']) == {
+'002':1,'003':2,'001':2,'012':1}
+
 
 
 
@@ -166,15 +213,38 @@ import Python's regular expression (pattern used to search for text patterns) mo
 re.findall(r'\b\w+\b', s) returns list of words from s that matches the pattern of word.
 """
 
+import re
+
 def word_frequency(paragraph):
     """
-    Write your docstring
+    This function counts how many times each word appears
+    in a given paragraph.
+
+    Parameters:
+    paragraph (str): a paragraph of text
+
+    Returns:
+    dict: dictionary with word as key and its frequency as value
     """
-    pass
+
+    words = re.findall(r'\b\w+\b', paragraph)
+    freq = {}
+
+    for w in words:
+        if w in freq:
+            freq[w] = freq[w] + 1
+        else:
+            freq[w] = 1
+
+    return freq
+
 
 # Your unit tests
+assert word_frequency("I am alive. I am happy.") == {
+'I':2,'am':2,'alive':1,'happy':1}
 
-
+assert word_frequency("I do not like water. I like fruits.") == {
+'I':2,'do':1,'not':1,'like':2,'water':1,'fruits':1}
 
 
 
@@ -214,9 +284,14 @@ Ensure that your function passes the unit test provided below.
 """
 
 # Save the repositories' id: name as a pair in a dict, and print them out.
-def id_name_repo_starred_300k(response_dict):
-    pass
 
+def id_name_repo_starred_300k(response_dict):
+    repo_dict = {}
+
+    for repo in response_dict["items"]:
+        repo_dict[repo["id"]] = repo["name"]
+
+    return repo_dict
 # assert id_name_repo_starred_300k(response_dict) == {
 #     13491895: 'free-programming-books',
 #     54346799: 'public-apis',
