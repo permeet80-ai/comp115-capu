@@ -1,7 +1,7 @@
 """
 Lab 9 - DNA
 
-Name: 
+Name: Parmeet kaur
 Due Date: Mar. 20, 2026, 5pm
 
 This lab contains 3 small exercises in total. The objectives are:
@@ -74,8 +74,10 @@ def dna_to_code(dna):
     # Hint: use the accumulator pattern to process each character of
     # the input dna string.  Convert each character to its
     # coded counterpart using DNA_TO_CODE_DICT
-    pass
-
+    
+    for base in dna:
+    coded += DNA_TO_CODE_DICT[base]
+return coded
 # Unit tests
 # assert dna_to_code('AATT') == '10100000'
 # assert dna_to_code('AA') == '1010'
@@ -85,7 +87,7 @@ def dna_to_code(dna):
 # assuming the length of dna is n?
 
 # Your Answer:
-
+The function goes through each letter in the DNA string once (O(n)).
 
 
 
@@ -124,8 +126,12 @@ def draw_coded(coded, color):
 
     # process every character in the coded string and
     # call the corresponding draw function as provided above.
-    pass
-
+    
+    for c in coded:
+    if c == '0':
+        draw_0(t)
+    else:
+        draw_1(t)
 
 # You can uncomment the following 3 lines to test your function draw_coded(),
 # and remember to comment these 3 lines after your testing for exercise 2.
@@ -159,7 +165,9 @@ def visualize(dna, color):
     This function performs the entire operation of visualizing a DNA sequence
     """
     # Hint: You need at most 2 lines of code to finish this function
-    pass
+    
+    coded = dna_to_code(dna)
+draw_coded(coded, color)
 
 
 
