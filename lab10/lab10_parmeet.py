@@ -1,7 +1,7 @@
 """
 Lab 10 - Image Processing
 
-Name: 
+Name: parmeet kaur
 Due Date: Mar. 27, 2026, 5pm
 
 Note: Run the file first, if you see an error of "No module of PIL",
@@ -136,9 +136,10 @@ def dim_eight_pixels_image():
     for row in range(im.height):
         for col in range(im.width):
             (r, g, b) = im.getpixel((col, row))
-            #
-            #
-            #
+           
+            r = r // 2
+            g = g // 2
+            b = b // 2
             im_dim.putpixel((col, row), (r, g, b))
     im_dim.save("img1_palette_dim.png")
 
@@ -162,8 +163,11 @@ def blue_washed_image():
     """
     im = Image.open("rick_and_morty.png")
     im_blue = Image.new("RGB", [im.width, im.height])
-    # Complete the code here
-
+  
+    for row in range(im.height):
+    for col in range(im.width):
+        r, g, b = im.getpixel((col, row))
+        im_blue.putpixel((col, row), (0, 0, b))
     im_blue.save("img2_rick_blue_washed.png")
 
 
@@ -201,9 +205,9 @@ def create_alternate_lines(width, height):
     for row in range(height):
         for col in range(width):
             if row % 2 == 0:
-                pass # Complete code here
+                im.putpixel((col, row), (255, 255, 255))
             else:
-                pass # Complete code here
+                im.putpixel((col, row), (0, 0, 0))
     im.save("img3_alternate_lines.png")
 
 
@@ -229,7 +233,12 @@ def create_random_noise(width, height):
     """
     im = Image.new("RGB", (width, height))
     # Complete code here
-
+    for row in range(height):
+    for col in range(width):
+        if random.random() < 0.5:
+            im.putpixel((col, row), (0, 0, 0))
+        else:
+            im.putpixel((col, row), (255, 255, 255))
     im.save("img4_random.png")
 
 #create_random_noise(150, 150)
@@ -259,7 +268,14 @@ def decode_image():
     im = Image.open("rick_encoded.png")
     im_secret = Image.new("RGB", [im.width, im.height])
     # Complete code here
+    for row in range(im.height):
+    for col in range(im.width):
+        r, g, b = im.getpixel((col, row))
 
+        if r % 2 == 0:
+            im_secret.putpixel((col, row), (255, 0, 0))
+        else:
+            im_secret.putpixel((col, row), (0, 0, 0))
     im_secret.save("img5_rick_secret.png")
 
 
